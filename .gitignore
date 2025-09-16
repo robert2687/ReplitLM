@@ -8,3 +8,7 @@
 
 # VS Code
 .vscode
+
+# Generated project artifacts
+*.zip
+__pycache__/
