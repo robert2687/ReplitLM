@@ -1,3 +1,7 @@
 einops
 sentencepiece
 transformers
+fastapi
+jinja2
+uvicorn
+torch
