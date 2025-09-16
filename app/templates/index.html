@@ -58,6 +58,8 @@
     .footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 18px; }
     .row { display: grid; grid-template-columns: 1fr 180px; gap: 10px; }
     @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
+    .status { margin-top: 10px; color: var(--muted); }
+    a#download { display: none; margin-top: 10px; }
   </style>
 </head>
 <body>
@@ -67,9 +69,9 @@
       <p class="sub">Describe the app you want, get a ready‑to‑run project zip.</p>
     </header>
     <div class="card">
-      <form method="post" action="/generate">
+      <form id="builder-form">
         <label for="prompt">Your idea</label>
-        <textarea id="prompt" name="prompt" placeholder="Example: Build a Streamlit dashboard that uploads a CSV and plots a line chart of 'revenue' by month."></textarea>
+        <textarea id="prompt" name="prompt" placeholder="Example: Build a Streamlit dashboard that uploads a CSV and plots a line chart of 'revenue' by month." required></textarea>
 
         <div class="row">
           <div>
@@ -85,13 +87,15 @@
             <button type="submit">Generate App</button>
           </div>
         </div>
-
-        <p class="hint">After generation, your browser will download a .zip containing app.py, a README and requirements.txt. For Streamlit, run: streamlit run app.py</p>
+        <div class="status" id="status"></div>
+        <a id="download" href="#" download>Download project zip</a>
+        <p class="hint">After generation, download the .zip containing app.py, a README and requirements.txt. For Streamlit, run: streamlit run app.py</p>
       </form>
     </div>
     <div class="footer">
       Built on ReplitLM. For local CPU testing, small prompts recommended.
     </div>
   </div>
+  <script src="/static/main.js"></script>
 </body>
 </html>

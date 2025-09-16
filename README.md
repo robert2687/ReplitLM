@@ -78,6 +78,12 @@ Notes:
 - GPU is used automatically if available (float16). CPU also works for short prompts but will be slower.
 - Streamlit apps can be run with `streamlit run app.py`.
 
+Environment knobs (optional):
+- APP_MAX_CONCURRENCY: max concurrent generations (default 1)
+- GEN_MAX_NEW_TOKENS: max tokens to generate (default 512)
+- GEN_TEMPERATURE, GEN_TOP_P, GEN_TOP_K: decoding params
+- USE_FP16=true|false: use float16 on GPU if available (default true)
+
 ## Training and Fine-tuning
 
 ### Training with LLM Foundry

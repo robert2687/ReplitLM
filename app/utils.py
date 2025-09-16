@@ -15,7 +15,7 @@ def write_file(path: str, content: str):
 
 
 def write_app_file(framework: str, prompt: str, code: str, target_dir: str, app_filename: str = "app.py"):
-    # Minimal project scafolding per framework
+    # Minimal project scaffolding per framework
     if framework == "streamlit":
         write_file(os.path.join(target_dir, app_filename), _wrap_streamlit(code))
         write_file(os.path.join(target_dir, "requirements.txt"), "streamlit\n")
@@ -33,6 +33,8 @@ def write_app_file(framework: str, prompt: str, code: str, target_dir: str, app_
     # Add a simple run script
     run_sh = "streamlit run app.py\n" if framework == "streamlit" else "python app.py\n"
     write_file(os.path.join(target_dir, "run.sh"), run_sh)
+    # Add .gitignore to keep zips and caches out
+    write_file(os.path.join(target_dir, ".gitignore"), "__pycache__/\n*.pyc\n.env\n.venv/\n*.zip\n")
 
 
 def _wrap_streamlit(code: str) -> str:
@@ -73,7 +75,7 @@ def _wrap_gradio(code: str) -> str:
 
 
 def make_zip_from_dir(src_dir: str, base_name: str) -> str:
-    zip_path = f\"{base_name}.zip\"
+    zip_path = f"{base_name}.zip"
     with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zf:
         for root, _, files in os.walk(src_dir):
             for f in files:
